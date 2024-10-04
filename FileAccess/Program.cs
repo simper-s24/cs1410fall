@@ -16,33 +16,36 @@ internal class Program
 
 		foreach (Bird bird in birds)
 		{
-			Goose? goose = bird as Goose;
-			if (bird.GetType() == typeof(Duck))
-			{
-				Duck duck = (Duck)bird;
-				Console.WriteLine(duck.Speak());
-			}
-			else if (goose != null)
-			{
-				Console.WriteLine(goose.Speak());
-			}
-			else if(bird is Penguin)
-			{
-				Penguin penguin = (Penguin)bird;
-				Console.WriteLine(penguin.Speak());
-			}
-			else
-			{
-				Console.WriteLine(bird.Speak());
-			}
+			Console.WriteLine(bird.Speak());
 		}
 	}
 }
 
 public class Bird
 {
+	
 	protected string FeatherColor = "Brown";
-	public string Speak() => "Squawk";
+	public string Speak() {
+		
+		Goose? goose = this as Goose;
+		if (this.GetType() == typeof(Duck))
+		{
+			Duck duck = (Duck)this;
+			return duck.Speak();
+		}
+		else if (goose != null)
+		{
+			return goose.Speak();
+		}
+		else if (this is Penguin)
+		{
+			Penguin penguin = (Penguin)this;
+			return penguin.Speak();
+		}
+		return "sqwak";
+
+
+	}
 }
 
 public class Duck : Bird
