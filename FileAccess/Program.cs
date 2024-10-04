@@ -8,22 +8,36 @@ internal class Program
 	{
 		List<Bird> birds = new List<Bird>
 		{
-			//new Bird(),
+			new Bird(""),
 			new Duck(),
 			new Goose(),
 			new Penguin(),
 		};
 
+		if (false) return;
+
 		foreach (Bird bird in birds)
 		{
-			Console.WriteLine(bird.Speak());
+			Console.WriteLine(bird.Speak()); 
+			Console.WriteLine();
 		}
 	}
 }
 
-public abstract class Bird
+public class Bird
 {
-	public abstract string FeatherColor();
+	protected string feathers;
+	protected string flight;
+	public Bird()
+	{
+		this.feathers = "";
+		this.flight = "";
+	}
+
+	public virtual string FeatherColor()
+	{
+		return "Brown";
+	}
 	public virtual string Speak() {
 		return "Sqwak";
 	}
@@ -32,11 +46,6 @@ public abstract class Bird
 public class Duck : Bird
 {
 	public override string Speak() => "Quack";
-	public string GetFeatherColor()
-	{
-		return "Brown";
-	}
-
 	public override string FeatherColor()
 	{
 		return "Green/Brown";
