@@ -8,7 +8,7 @@ internal class Program
 	{
 		List<Bird> birds = new List<Bird>
 		{
-			new Bird(""),
+			new Bird(),
 			new Duck(),
 			new Goose(),
 			new Penguin(),
@@ -21,25 +21,6 @@ internal class Program
 			Console.WriteLine(bird.Speak()); 
 			Console.WriteLine();
 		}
-	}
-}
-
-public class Bird
-{
-	protected string feathers;
-	protected string flight;
-	public Bird()
-	{
-		this.feathers = "";
-		this.flight = "";
-	}
-
-	public virtual string FeatherColor()
-	{
-		return "Brown";
-	}
-	public virtual string Speak() {
-		return "Sqwak";
 	}
 }
 
