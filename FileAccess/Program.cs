@@ -8,7 +8,7 @@ internal class Program
 	{
 		List<Bird> birds = new List<Bird>
 		{
-			new Bird(),
+			//new Bird(),
 			new Duck(),
 			new Goose(),
 			new Penguin(),
@@ -21,48 +21,52 @@ internal class Program
 	}
 }
 
-public class Bird
+public abstract class Bird
 {
-	
-	protected string FeatherColor = "Brown";
-	public string Speak() {
-		
-		Goose? goose = this as Goose;
-		if (this.GetType() == typeof(Duck))
-		{
-			Duck duck = (Duck)this;
-			return duck.Speak();
-		}
-		else if (goose != null)
-		{
-			return goose.Speak();
-		}
-		else if (this is Penguin)
-		{
-			Penguin penguin = (Penguin)this;
-			return penguin.Speak();
-		}
-		return "sqwak";
-
-
+	public abstract string FeatherColor();
+	public virtual string Speak() {
+		return "Sqwak";
 	}
 }
 
 public class Duck : Bird
 {
-	public new string Speak() => "Quack";
+	public override string Speak() => "Quack";
 	public string GetFeatherColor()
 	{
-		return FeatherColor;
+		return "Brown";
+	}
+
+	public override string FeatherColor()
+	{
+		return "Green/Brown";
 	}
 }
 
 public class Goose :Bird
 {
-	public new string Speak() => "Honk";
+	public override string FeatherColor()
+	{
+		return "gray";
+	}
+
+	public override string Speak() => "Honk";
 }
 
 public class Penguin :Bird
 {
-	public new string Speak() => "Coo";
+	public override string FeatherColor()
+	{
+		return "Black/White";
+	}
+
+	public override string Speak() => "Coo";
+}
+
+public class Sparrow : Bird
+{
+	public override string FeatherColor()
+	{
+		return "Black";
+	}
 }
