@@ -14,6 +14,8 @@ internal class Program
 			new Penguin(),
 		};
 
+		birds.Add
+
 		if (false) return;
 
 		foreach (Bird bird in birds)

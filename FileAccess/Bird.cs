@@ -1,4 +1,4 @@
-﻿public class Bird
+﻿public abstract class Bird
 {
 	protected string feathers;
 	protected string flight;
