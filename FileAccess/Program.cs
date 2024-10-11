@@ -8,13 +8,14 @@ internal class Program
 	{
 		List<Bird> birds = new List<Bird>
 		{
-			new Bird(),
 			new Duck(),
 			new Goose(),
 			new Penguin(),
 		};
 
-		birds.Add
+		Duck d = new Duck();
+		birds.Add(d);
+
 
 		if (false) return;
 
@@ -23,6 +24,14 @@ internal class Program
 			Console.WriteLine(bird.Speak()); 
 			Console.WriteLine();
 		}
+
+		List<Penguin> plist = new List<Penguin>
+		{
+			new FairyPenguin(),
+			new Penguin()
+		};
+
+		birds.AddRange(plist);
 	}
 }
 
@@ -53,6 +62,11 @@ public class Penguin :Bird
 	}
 
 	public override string Speak() => "Coo";
+}
+
+public class FairyPenguin : Penguin
+{
+
 }
 
 public class Sparrow : Bird
