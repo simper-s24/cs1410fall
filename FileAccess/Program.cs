@@ -2,10 +2,20 @@
 using System.Threading.Tasks;
 
 
+public record Point(double X, double Y);
+
 internal class Program
 {
 	private static void Main(string[] args)
 	{
+
+		Point p1 = new Point(3, 4);
+		p1 = new Point(5, 6);
+		Point p2 = p1 with { X = 7, Y = 6 };
+		p2 = p2 with { Y = 13 };
+		Point p3 = p1 with { X = 5 };
+		Point p4 = new Point(p1.X, p2.Y);
+
 		List<Bird> birds = new List<Bird>
 		{
 			new Duck(),
