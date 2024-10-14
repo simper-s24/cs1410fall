@@ -1,47 +1,33 @@
 ﻿using System.IO;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 
-public record Point(double X, double Y);
+public record Point(double X, double Y, double Z);
 
 internal class Program
 {
 	private static void Main(string[] args)
 	{
 
-		Point p1 = new Point(3, 4);
-		p1 = new Point(5, 6);
+		Point p1 = new Point(3, 4,1 );
+		p1 = new Point(5, 6, 1);
 		Point p2 = p1 with { X = 7, Y = 6 };
 		p2 = p2 with { Y = 13 };
 		Point p3 = p1 with { X = 5 };
-		Point p4 = new Point(p1.X, p2.Y);
+		Point p4 = new Point(p1.X, p2.Y, 0);
 
-		List<Bird> birds = new List<Bird>
-		{
-			new Duck(),
-			new Goose(),
-			new Penguin(),
+		List<Point> points = new List<Point>{
+			p1, p2, p3, p4
 		};
 
-		Duck d = new Duck();
-		birds.Add(d);
+		string pointstring = JsonSerializer.Serialize(points);
+		Console.WriteLine(pointstring);
 
+		string info = "[{\"X\":5,\"Y\":6},{\"X\":7,\"Y\":13},{\"X\":5,\"Y\":6},{\"X\":5,\"Y\":13}]";
+		List<Point> points2 = JsonSerializer.Deserialize<List<Point>>(info);
 
-		if (false) return;
-
-		foreach (Bird bird in birds)
-		{
-			Console.WriteLine(bird.Speak()); 
-			Console.WriteLine();
-		}
-
-		List<Penguin> plist = new List<Penguin>
-		{
-			new FairyPenguin(),
-			new Penguin()
-		};
-
-		birds.AddRange(plist);
+		
 	}
 }
 
