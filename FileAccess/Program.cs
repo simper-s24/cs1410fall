@@ -12,64 +12,20 @@ internal class Program
 
 		var list = new List<int> { 56, 8, 34, 99, 101, 43, 234, 764, 23, 8, 1, };
 
-		var filtered = list.Where(InRange).ToList();
 
-		var sublist = new List<int>();
-
-		foreach (int n in list)
-		{
-			if (InRange(n))
-			{
-				sublist.Add(n);
-			}
-		}
+		var areas = list
+			.Where(InRange)
+			.Order()
+			.Select(x => x * x * 3.14159)
+			.ToList();
+		
+		areas.ForEach(x => Console.Write(x + ", "));
 
 	}
 	static bool InRange(int n)
 	{
-		return n > 34 && n < 98;
+		//REQ#1.1.3
+		return n > 15 && n < 76;
 	}
 }
 
-
-public class Duck : Bird
-{
-	public override string Speak() => "Quack";
-	public override string FeatherColor()
-	{
-		return "Green/Brown";
-	}
-}
-
-public class Goose : Bird
-{
-	public override string FeatherColor()
-	{
-		return "gray";
-	}
-
-	public override string Speak() => "Honk";
-}
-
-public class Penguin : Bird
-{
-	public override string FeatherColor()
-	{
-		return "Black/White";
-	}
-
-	public override string Speak() => "Coo";
-}
-
-public class FairyPenguin : Penguin
-{
-
-}
-
-public class Sparrow : Bird
-{
-	public override string FeatherColor()
-	{
-		return "Black";
-	}
-}
