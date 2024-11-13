@@ -7,25 +7,49 @@ public record Point(double X, double Y, double Z);
 
 internal class Program
 {
+	public delegate int NumberDelegate(int number);
+
 	private static void Main(string[] args)
 	{
+		NumberDelegate fun1 = AddOne;
+		NumberDelegate g = (x => x*2);
 
-		var list = new List<int> { 56, 8, 34, 99, 101, 43, 234, 764, 23, 8, 1, };
+		int b = Bar(76, fun1);
+		int b2 = Bar2(76, AddOne);
+		Bar3(5, PrintInt);
+		Bar4(7, IsPrime);
 
+		Console.WriteLine(b);
+	}
 
-		var areas = list
-			.Where(InRange)
-			.Order()
-			.Select(x => x * x * 3.14159)
-			.ToList();
-		
-		areas.ForEach(x => Console.Write(x + ", "));
+	private static int Bar(int c1, NumberDelegate fun){
+		return fun.Invoke(c1);
+	}
+
+	private static int Bar2(int c1, Func<int, int> fun){
+		return fun.Invoke(c1);
+	}
+	private static void Bar3(int c1, Action<int> fun){
 
 	}
-	static bool InRange(int n)
+	private static void Bar4(int a, Func<int, bool> fun){
+	}
+	private static void Bar5(int a, Predicate<int> fun){
+
+	}
+
+	private static int AddOne(int a)
 	{
-		//REQ#1.1.3
-		return n > 15 && n < 76;
+		return a + 1;
 	}
+
+	private static void PrintInt(int a){
+		Console.WriteLine(a);
+	}
+
+	private static bool IsPrime(int a){
+		return false;
+	}
+
 }
 
